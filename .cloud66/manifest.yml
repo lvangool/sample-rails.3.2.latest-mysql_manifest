@@ -29,7 +29,7 @@ production:
             type: BYOC
             vendor: aws
             size: m1.small
-            region: us-east-1
+            region: eu-west-1
             extra_packages: 
                 - chrony
     mysql: 
@@ -38,6 +38,6 @@ production:
             type: BYOC
             vendor: aws
             size: t1.micro
-            region: us-west-1
+            region: eu-west-1
             extra_packages: 
                 - atop
