@@ -28,18 +28,11 @@ production:
             unique_name: frontend
             type: BYOC
             vendor: aws
-            size: m1.small
-            region: eu-west-1
+            size: c1.medium
+            region: us-east-1
             extra_packages: 
                 - chrony
     mysql: 
-        server: 
-            unique_name: backend
-            type: BYOC
-            vendor: aws
-            size: t1.small
-            region: eu-west-1
-            extra_packages: 
-                - atop
+        shared_server: frontend
     redis: 
         shared_server: frontend
