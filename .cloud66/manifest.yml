@@ -2,16 +2,17 @@ development:
   rails: 
     servers:
       - server: 
-        unique_name: single_server
-        vendor: virtualbox
-        region: local deployment
-        size: UbuntuRuby200-247
-        extra_packages: 
-          - atop
-          - chrony
+          unique_name: single_server
+          vendor: virtualbox
+          region: local deployment
+          size: UbuntuRuby200-247
     configuration:
       asset_pipeline_precompile: true
       do_initial_db_schema_load: false    
+      extra_packages: 
+        - atop
+        - chrony
+
   redis: 
     servers: 
       - server:
@@ -36,13 +37,10 @@ staging:
   rails: 
     servers:
       - server: 
-        unique_name: frontend
-        vendor: virtualbox
-        region: local deployment
-        size: UbuntuRuby200-247
-        extra_packages: 
-          - atop
-          - chrony
+          unique_name: frontend
+          vendor: virtualbox
+          region: local deployment
+          size: UbuntuRuby200-247
     configuration:
       asset_pipeline_precompile: true
       do_initial_db_schema_load: false    
@@ -70,16 +68,16 @@ production:
   rails: 
     servers:
       - server: 
-        unique_name: single_server
-        vendor: virtualbox
-        region: local deployment
-        size: UbuntuRuby200-247
-        extra_packages: 
-          - atop
-          - chrony
+          unique_name: single_server
+          vendor: virtualbox
+          region: local deployment
+          size: UbuntuRuby200-247
     configuration:
       asset_pipeline_precompile: true
       do_initial_db_schema_load: false    
+      extra_packages: 
+        - atop
+        - chrony
   redis: 
     servers: 
       - server:
@@ -87,13 +85,10 @@ production:
   mysql: 
     servers:
       - server: 
-        unique_name: backend
-        vendor: virtualbox
-        region: local deployment
-        size: UbuntuRuby200-247
-        extra_packages: 
-          - atop
-          - chrony
+          unique_name: backend
+          vendor: virtualbox
+          region: local deployment
+          size: UbuntuRuby200-247          
   memcached: 
     servers: 
       same_as: rails
