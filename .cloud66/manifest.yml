@@ -68,7 +68,7 @@ production:
   rails: 
     servers:
       - server: 
-          unique_name: single_server
+          unique_name: frontend
           vendor: virtualbox
           region: local deployment
           size: UbuntuRuby200-247
