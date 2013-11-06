@@ -1,34 +1,107 @@
 development:
-    rails: 
-        server: 
-            unique_name: frontend
-            extra_packages: 
-                - atop
-                - chrony
+  rails: 
+    servers:
+      - server: 
+        unique_name: single_server
+        vendor: virtualbox
+        region: local deployment
+        size: UbuntuRuby200-247
+        extra_packages: 
+          - atop
+          - chrony
+    configuration:
+      asset_pipeline_precompile: true
+      do_initial_db_schema_load: false    
+  redis: 
+    servers: 
+      - server:
+          same_as: single_server
+  mysql: 
+    servers:
+      - server:
+          same_as: single_server
+  memcached: 
+    servers: 
+      same_as: rails
+    configuration:
+      memory: 1024
+      port: 11215
+      listen_ip: 127.0.0.1
+  haproxy: 
+    configuration:
+      httpchk: HEAD / HTTP/1.0 (default value)
+      balance: roundrobin (default value)
+
 staging:
-    rails: 
-        server: 
-            unique_name: frontend
-            type: BYOC
-            vendor: aws
-            size: m1.small
-            region: us-east-1
-            extra_packages: 
-                - chrony                
-    mysql: 
-        shared_server: frontend
+  rails: 
+    servers:
+      - server: 
+        unique_name: frontend
+        vendor: virtualbox
+        region: local deployment
+        size: UbuntuRuby200-247
+        extra_packages: 
+          - atop
+          - chrony
+    configuration:
+      asset_pipeline_precompile: true
+      do_initial_db_schema_load: false    
+  redis: 
+    servers: 
+      - server:
+          same_as: backend
+  mysql: 
+    servers:
+      - server:
+          unique_name: backend
+  memcached: 
+    servers: 
+      same_as: rails
+    configuration:
+      memory: 1024
+      port: 11215
+      listen_ip: 127.0.0.1
+  haproxy: 
+    configuration:
+      httpchk: HEAD / HTTP/1.0 (default value)
+      balance: roundrobin (default value)
 
 production:
-    rails: 
-        server: 
-            unique_name: frontend
-            type: BYOC
-            vendor: aws
-            size: c1.medium
-            region: us-east-1
-            extra_packages: 
-                - chrony
-    mysql: 
-        shared_server: frontend
-    redis: 
-        shared_server: frontend
+  rails: 
+    servers:
+      - server: 
+        unique_name: single_server
+        vendor: virtualbox
+        region: local deployment
+        size: UbuntuRuby200-247
+        extra_packages: 
+          - atop
+          - chrony
+    configuration:
+      asset_pipeline_precompile: true
+      do_initial_db_schema_load: false    
+  redis: 
+    servers: 
+      - server:
+          same_as: backend
+  mysql: 
+    servers:
+      - server: 
+        unique_name: backend
+        vendor: virtualbox
+        region: local deployment
+        size: UbuntuRuby200-247
+        extra_packages: 
+          - atop
+          - chrony
+  memcached: 
+    servers: 
+      same_as: rails
+    configuration:
+      memory: 1024
+      port: 11215
+      listen_ip: 127.0.0.1
+  haproxy: 
+    configuration:
+      httpchk: HEAD / HTTP/1.0 (default value)
+      balance: roundrobin (default value)
